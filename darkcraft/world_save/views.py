@@ -3,6 +3,7 @@ from models import WorldSave
 from forms import RequestWorldSaveForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.servers.basehttp import FileWrapper
+from django.core.files import File
 import os
 # Create your views here.
 import subprocess
@@ -26,7 +27,7 @@ def save_form(request):
             '/home/minecraft/minecraft/world'
             ])
 
-        w.compressed_file = file(archive_filename)
+        w.compressed_file = File(archive_filename)
         w.save()
 
         return HttpResponseRedirect('/')
