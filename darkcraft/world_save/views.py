@@ -12,8 +12,23 @@ def save_form(request):
     form = RequestWorldSaveForm(request.POST or None)
 
     if form.is_valid():
+
+        
+
         w = WorldSave(signature=form.cleaned_data['signature'])
         w.save()
+
+        archive_filename = '/home/minecraft/world_backups/darkcraft_{}.zip'.format(w.date)
+        print subprocess.call([
+            'zip',
+            '-r',
+            archive_filename,
+            '/home/minecraft/minecraft/world'
+            ])
+
+        w.compressed_file = file(archive_filename)
+        w.save()
+
         return HttpResponseRedirect('/')
 
     return render(request, 'form.html', {'form':form, 'submit_url':'/save/'})
