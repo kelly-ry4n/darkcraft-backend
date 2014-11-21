@@ -7,6 +7,8 @@ from models import MapRender
 def render_map(request):
     
     existing = subprocess.check_output(['ps','aux']).replace('\n','\n\n<p><br>')
+
+    print existing
     if 'map.sh' in existing:
         return redirect('/')
 
