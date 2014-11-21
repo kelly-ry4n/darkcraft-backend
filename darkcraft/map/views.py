@@ -9,13 +9,13 @@ def render_map(request):
     existing = subprocess.Popen(['ps','aux'])
     if 'map.sh' in existing:
         return redirect('/')
-        
+
     subprocess.Popen(['sh','/home/minecraft/mapper/map.sh'])
 
     return redirect('/')
 
 def get_render_progress():
-    head = subprocess.popen(['head', '/home/minecraft/mapper/mapper.log'])
-    tail = subprocess.popen(['tail', '/home/minecraft/mapper/mapper.log'])
+    head = subprocess.Popen(['head', '/home/minecraft/mapper/mapper.log'])
+    tail = subprocess.Popen(['tail', '/home/minecraft/mapper/mapper.log'])
 
     return head + '\n...\n' + tail
