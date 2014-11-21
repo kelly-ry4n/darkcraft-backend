@@ -27,7 +27,7 @@ def save_form(request):
             '/home/minecraft/minecraft/world'
             ])
 
-        w.compressed_file.save(archive_filename,File(archive_filename))
+        w.compressed_file.save(archive_filename,File(open(archive_filename)))
         w.save()
 
         return HttpResponseRedirect('/')
