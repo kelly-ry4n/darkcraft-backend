@@ -8,15 +8,22 @@ import os
 # Create your views here.
 import subprocess
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
 def save_form(request):
 
     form = RequestWorldSaveForm(request.POST or None)
 
     if form.is_valid():
-
-        
-
-        w = WorldSave(signature=form.cleaned_data['signature'])
+        ip = get_client_ip(request)
+        w = WorldSave(signature=form.cleaned_data['signature'], ip=ip)
         w.save()
 
         archive_filename = '/home/minecraft/world_backups/darkcraft_{}.zip'.format(w.date).replace(' ','_')
