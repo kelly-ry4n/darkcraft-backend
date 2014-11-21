@@ -55,3 +55,4 @@ target/
 
 #ignore dirs
 /darkcraft/media/*
+/darkcrafy/db.sqlite3
