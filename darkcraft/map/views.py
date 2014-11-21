@@ -15,7 +15,7 @@ def render_map(request):
     return redirect('/')
 
 def get_render_progress():
-    head = subprocess.Popen(['head', '/home/minecraft/mapper/mapper.log'])
-    tail = subprocess.Popen(['tail', '/home/minecraft/mapper/mapper.log'])
+    head = subprocess.call(['head', '/home/minecraft/mapper/mapper.log'])
+    tail = subprocess.call(['tail', '/home/minecraft/mapper/mapper.log'])
 
     return head + '\n...\n' + tail
