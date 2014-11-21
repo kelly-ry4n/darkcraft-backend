@@ -1,0 +1,14 @@
+
+<html>
+<head><title>World Save List</title></head>
+
+Download Word Saves here. They may take some time to render after saving, please be patient
+and do not queue multiple save requests. It will appear here soon.
+
+<form action="{{submit_url|safe}}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+
+</html>

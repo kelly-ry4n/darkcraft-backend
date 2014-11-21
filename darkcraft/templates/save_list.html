@@ -1,0 +1,24 @@
+
+<html>
+<head><title>World Save List</title></head>
+<a href="/save/">Request a new save</a>
+<table>
+    <tr>
+        <td>Date</td>
+        <td>Signature</td>
+        <td>IP Address</td>
+        <td>File</td>
+        <td>Size</td>
+    </tr>
+    {% for save in saves %}
+    <tr>
+       <td>{{ save.date }} </td>
+       <td>{{ save.signature }}</td>
+       <td>{{ save.ip }}
+       <td> <a href="/save/{{save.id}}"> Download</a></td>
+       <td> {{ save.compressed_file.size }} Bytes</td>
+    </tr>
+{% endfor %}
+</table>
+
+</html>
