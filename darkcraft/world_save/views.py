@@ -8,6 +8,7 @@ import os
 # Create your views here.
 import subprocess
 
+from map.views import get_render_progress
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -46,7 +47,8 @@ def list_map_saves(request):
     return render(request,
         'save_list.html',
         {
-        'saves':WorldSave.objects.all().exclude(compressed_file='').order_by('-date')
+        'saves':WorldSave.objects.all().exclude(compressed_file='').order_by('-date'),
+        'renders':get_render_progress()
         })
 
 
