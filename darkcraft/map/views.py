@@ -6,7 +6,7 @@ from models import MapRender
 
 def render_map(request):
     
-    existing = subprocess.Popen(['ps','aux'])
+    existing = subprocess.check_output(['ps','aux'])
     if 'map.sh' in existing:
         return redirect('/')
 
@@ -15,7 +15,7 @@ def render_map(request):
     return redirect('/')
 
 def get_render_progress():
-    head = subprocess.call(['head', '/home/minecraft/mapper/mapper.log'])
-    tail = subprocess.call(['tail', '/home/minecraft/mapper/mapper.log'])
+    head = subprocess.check_output(['head', '/home/minecraft/mapper/mapper.log'])
+    tail = subprocess.check_output(['tail', '/home/minecraft/mapper/mapper.log'])
 
     return head + '\n...\n' + tail
